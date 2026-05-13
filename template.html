@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<title>{{TITLE}}</title>
+<style>
+  @page { size: A4; margin: 24mm 18mm; }
+
+  :root {
+    --ink: #37352f;
+    --muted: #9b9a97;
+    --rule: #e9e9e7;
+    --section-bg: #f4f1f9;
+    --section-bg-alt: #f6f3f9;
+    --link: #0b6bcb;
+    --code-bg: #f1f1ef;
+  }
+
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    color: var(--ink);
+    font-family: -apple-system, "Segoe UI", "Apple SD Gothic Neo",
+      "Malgun Gothic", "Noto Sans KR", "Helvetica Neue", Arial, sans-serif;
+    font-size: 11pt;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    text-wrap: pretty;
+  }
+  /* 한국어 본문은 어절 단위로 줄바꿈, URL/코드만 어디서든 끊김 허용 */
+  a, code, pre { word-break: break-all; overflow-wrap: anywhere; }
+  p { word-break: keep-all; overflow-wrap: break-word; }
+
+  .page { max-width: 720px; margin: 0 auto; padding: 8px 0 32px; }
+
+  .doc-emoji { font-size: 36px; line-height: 1; margin-bottom: 8px; }
+  h1.doc-title {
+    font-size: 32pt;
+    font-weight: 800;
+    margin: 4px 0 24px;
+    letter-spacing: -0.5px;
+  }
+
+  .callout {
+    display: flex;
+    gap: 12px;
+    background: #fdf6e9;
+    border-radius: 6px;
+    padding: 14px 16px;
+    margin: 12px 0 20px;
+    font-size: 10.5pt;
+  }
+  .callout .icon { font-size: 18px; line-height: 1.4; }
+  .callout strong { font-weight: 700; }
+  .callout ol { margin: 6px 0 0 18px; padding: 0; }
+  .callout li { margin: 2px 0; }
+  .callout code {
+    background: var(--code-bg);
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-family: "Fira Mono", Consolas, Menlo, monospace;
+    font-size: 9.5pt;
+  }
+
+  h2.section-title {
+    background: var(--section-bg);
+    padding: 8px 12px;
+    margin: 28px 0 0;
+    font-size: 13pt;
+    font-weight: 700;
+    border-radius: 3px;
+  }
+
+  .section-hint {
+    color: var(--muted);
+    font-style: italic;
+    font-size: 10pt;
+    padding: 6px 12px 8px;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 12px;
+  }
+
+  .section-body { padding: 4px 4px 12px; }
+  .section-body p { margin: 10px 0; word-break: keep-all; overflow-wrap: break-word; }
+  .section-body ol, .section-body ul { margin: 8px 0 8px 22px; padding: 0; }
+  .section-body li { margin: 6px 0; word-break: keep-all; overflow-wrap: break-word; }
+  .section-body li > strong:first-child { display: block; margin-bottom: 2px; }
+
+  .scrum-block { margin: 12px 0 18px; }
+  .scrum-block .label { font-weight: 700; margin-bottom: 4px; }
+  .scrum-block .body { margin-left: 4px; min-height: 1.5em; }
+
+  .ts-step {
+    margin: 14px 0;
+  }
+  .ts-step .label {
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .ts-step .body {
+    margin-left: 4px;
+    min-height: 1.5em;
+  }
+
+  a, a:visited { color: var(--link); text-decoration: underline; }
+
+  h1.extra-title {
+    font-size: 22pt;
+    font-weight: 800;
+    margin: 36px 0 0;
+  }
+
+  .links { padding: 4px 4px 12px; }
+  .links .row { margin: 4px 0; }
+  .links .row .key {
+    display: inline-block;
+    min-width: 64px;
+    color: var(--ink);
+  }
+
+  pre, code {
+    font-family: "Fira Mono", Consolas, Menlo, monospace;
+    font-size: 10pt;
+  }
+  pre {
+    background: var(--code-bg);
+    padding: 10px 12px;
+    border-radius: 4px;
+    overflow-x: auto;
+    margin: 8px 0;
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin: 6px 0;
+    display: block;
+  }
+
+  .empty { color: var(--muted); font-style: italic; }
+  .footer {
+    margin-top: 36px;
+    padding-top: 12px;
+    border-top: 1px solid var(--rule);
+    color: var(--muted);
+    font-size: 9pt;
+    text-align: center;
+  }
+
+  /* PDF page break helpers */
+  h2.section-title, h1.extra-title { break-after: avoid; }
+  .ts-step, .scrum-block { break-inside: avoid; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="doc-emoji">📃</div>
+  <h1 class="doc-title">{{TITLE}}</h1>
+
+  <div class="callout">
+    <div class="icon">📌</div>
+    <div>
+      <strong>과제 제출 방법</strong>
+      <ol>
+        <li>본 PDF를 그대로 과제 제출란에 업로드합니다.</li>
+        <li>파일명: <code>{{FILENAME}}</code></li>
+        <li>추후 포트폴리오 / 프로젝트 문서에 활용할 수 있으니 일일회고처럼 꼼꼼히 기록되었는지 확인해 주세요.</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- SCRUM -->
+  <h2 class="section-title">Scrum</h2>
+  <div class="section-hint">*금일 진행한 스크럼 내용을 간략하게 요약했습니다. (없을 경우 공란)</div>
+  <div class="section-body">
+    {{SCRUM_BODY}}
+  </div>
+
+  <!-- PROJECT -->
+  <h2 class="section-title">Project</h2>
+  <div class="section-hint">*프로젝트 작업에서 본인이 기여한 부분에 대해 작성합니다.</div>
+  <div class="section-body">
+    {{PROJECT_BODY}}
+  </div>
+
+  <!-- TROUBLE SHOOTING -->
+  <h2 class="section-title">Trouble Shooting</h2>
+  <div class="section-hint">*금일 개발 과정 중, 문제를 해결한 경험을 기술했습니다.</div>
+  <div class="section-body">
+    {{TROUBLE_BODY}}
+  </div>
+
+  <!-- EXTRA -->
+  <h1 class="extra-title">그 외 과제 제출 (선택기입)</h1>
+
+  <h2 class="section-title">Github / Blog</h2>
+  <div class="section-hint">*별도로 회고를 정리하는 깃헙, 블로그 게시글 링크입니다.</div>
+  <div class="links">
+    <div class="row"><span class="key">Github:</span> {{LINK_GITHUB}}</div>
+    <div class="row"><span class="key">Blog:</span> {{LINK_BLOG}}</div>
+    <div class="row"><span class="key">Velog:</span> {{LINK_VELOG}}</div>
+  </div>
+
+  <h2 class="section-title">기술탐구</h2>
+  <div class="section-hint">*프로젝트 작업을 위해 추가로 학습한 게시글 링크입니다.</div>
+  <div class="links">
+    {{STUDY_LINKS}}
+  </div>
+
+  <div class="footer">{{FOOTER}}</div>
+</div>
+</body>
+</html>

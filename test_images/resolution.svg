@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="200" viewBox="0 0 520 200">
+  <rect width="520" height="200" fill="#ecfdf5"/>
+  <rect x="20" y="20" width="480" height="160" fill="#ffffff" stroke="#86efac" stroke-width="2" rx="6"/>
+  <text x="40" y="55" font-family="sans-serif" font-size="16" fill="#065f46" font-weight="bold">✅ 합의된 기획 방향</text>
+  <text x="40" y="88" font-family="sans-serif" font-size="13" fill="#374151">- 후보 장르: 로그라이크 / 디펜스 / 퍼즐</text>
+  <text x="40" y="112" font-family="sans-serif" font-size="13" fill="#374151">- 최종: 디펜스 베이스 + 로그라이크 성장 + 퍼즐 스테이지</text>
+  <text x="40" y="136" font-family="sans-serif" font-size="13" fill="#374151">- 각 장르 장점만 결합한 하이브리드</text>
+  <text x="40" y="170" font-family="sans-serif" font-size="11" fill="#9ca3af" font-style="italic">[placeholder · trouble.resolution 테스트용]</text>
+</svg>
