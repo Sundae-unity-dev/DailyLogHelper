@@ -2,7 +2,7 @@
   "name": "daily-log-helper",
   "version": "0.1.0",
   "private": true,
-  "description": "Notion-style daily retrospective template renderer for Unity 3기 students",
+  "description": "Notion-style daily retrospective template renderer for Elice Track students",
   "main": "render.js",
   "scripts": {
     "render": "node render.js"
